@@ -1,0 +1,43 @@
+<h1>Menu</h1>
+<div>
+User: <%= current_user.name %>
+</div>
+<div>
+	<h2>Your Lists</h2>
+	<ul><!--List of ToDo lists for current user-->
+		<% @lists.each do |lst| %>
+			<li><!--@TODO add user verification-->
+				<%= lst.name %>
+				<!--@TODO Edit and Delete buttons-->
+			</li>
+		<% end %>
+	</ul>
+</div>
+<div><!--Form for adding a new list-->
+	<h2>Add a List</h2>
+	<%= form_for :list, url: lists_path do |f| %>
+
+		<% if @list && @list.errors.any? %>
+			<div id="error_explanation">
+				<h2>
+					<%= pluralize(@list.errors.count, "error") %> prohibited this list from being saved:
+				</h2>
+				<ul>
+					<% @list.errors.full_messages.each do |msg| %>
+						<li><%= msg %></li>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>
+
+		<div>
+			<%= f.label :name %><br>
+			<%= f.text_field :name %>
+		</div>
+
+		<div>
+			<%= f.submit "Create List" %>
+		</div>
+ 
+	<% end %>
+</div>
