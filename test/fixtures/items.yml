@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  done: false
   name: MyString
   list: one
 
 two:
+  done: false
   name: MyString
   list: two
