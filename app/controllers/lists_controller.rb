@@ -12,12 +12,14 @@ class ListsController < ApplicationController
 	end
 	
 	def create
-		@lists = List.all
-		@list = List.new(list_params)
+		#@lists = List.all
+		#1/0
+		@user = User.find_by_id(current_user[:id])
+		@list = @user.lists.create(list_params)
 		
 		if @list.save
 			#@TODO redirect_to @list
-			redirect_to lists_path
+			redirect_to user_lists_path
 		else
 			render 'index'
 		end
@@ -25,7 +27,10 @@ class ListsController < ApplicationController
 	
 	private
 	def list_params
+		#params[:list][:user] = current_user
+		
 		params.require(:list).permit(:name)
+		#1/0
 	end
 	
 end

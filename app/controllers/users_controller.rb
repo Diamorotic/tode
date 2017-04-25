@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 				#add_session[:user_id] = @user.id
 				#add_session @user.id
 				session[:current_user_id] = @user.id
-				redirect_to lists_path
+				redirect_to user_lists_path(@user.id)
 			else
 				logger.info "User (#{@user.name}) log in failure: wrong password"
 				flash[:error] = 'User name taken. Wrong passowrd.'
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 			if @user.save
 				logger.debug "User (#{@user.name}) succesfully registered"
 				session[:current_user_id] = @user.id
-				redirect_to lists_path, notice: 'User succesfully created'
+				redirect_to user_lists_path(@user.id), notice: 'User succesfully created'
 			else
 				logger.debug "Error while registering new user"
 				flash[:error] = 'An error occured'

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-	resources :lists
-	resources :users
+	resources :users do
+		resources :lists
+	end
 
 	root 'login#index'
 

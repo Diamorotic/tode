@@ -5,7 +5,7 @@ User: <%= current_user.name %>
 <div>
 	<h2>Your Lists</h2>
 	<ul><!--List of ToDo lists for current user-->
-		<% @lists.each do |lst| %>
+		<% current_user.lists.each do |lst| %>
 			<li><!--@TODO add user verification-->
 				<%= lst.name %>
 				<!--@TODO Edit and Delete buttons-->
@@ -15,7 +15,7 @@ User: <%= current_user.name %>
 </div>
 <div><!--Form for adding a new list-->
 	<h2>Add a List</h2>
-	<%= form_for :list, url: lists_path do |f| %>
+	<%= form_for :list, url: user_lists_path do |f| %>
 
 		<% if @list && @list.errors.any? %>
 			<div id="error_explanation">
