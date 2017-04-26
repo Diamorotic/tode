@@ -2,3 +2,16 @@
 <h2><%= @list.name %></h2>
 
 <%= render 'item_list' %>
+
+<h3>Add a Task</h3>
+<div>
+	<%= form_for :item, url: user_list_items_path(@user.id, @list.id) do |itm| %>
+		<div>
+			<%= itm.label :name %><br>
+			<%= itm.text_field :name %>
+		</div>
+		<div>
+			<%= itm.submit "Add Task" %>
+		</div>
+	<% end %>
+</div>
