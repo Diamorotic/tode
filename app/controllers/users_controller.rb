@@ -12,8 +12,6 @@ class UsersController < ApplicationController
 			logger.debug "User found, name:  #{@user.name}"
 			if @user.authenticate(user_params[:password])
 				logger.debug "User loged in succesfully @user.id: #{@user.id}"
-				#add_session[:user_id] = @user.id
-				#add_session @user.id
 				session[:current_user_id] = @user.id
 				redirect_to user_lists_path(@user.id)
 			else
