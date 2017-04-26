@@ -33,20 +33,6 @@ class UsersController < ApplicationController
 				render '/login/index'
 			end
 		end
-=begin
-		if User.find_by_name(params[:name])
-			#@TODO not the most efective way - double find
-			@user = User.find_by_name(params[:name])
-			redirect_to lists_path
-		else
-			@user = User.new(user_params)
-			if @user.save
-				redirect_to lists_path
-			else
-				render '/login/index'
-			end
-		end
-=end
 	end
 	
 	private
