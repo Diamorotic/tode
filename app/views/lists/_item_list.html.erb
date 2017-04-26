@@ -4,7 +4,8 @@
 		<tr>
 			<th>Done</th>
 			<th>Task</th>
-			<th>Button</th>
+			<th>Check / Uncheck</th>
+			<th>Delete</th>
 			<th colspan="2"></th>
 		</tr>
 		<% @list.items.each do |itm| %>
@@ -12,7 +13,10 @@
 				<td><%= "Y" if itm.done %></td>
 				<td><%= itm.name %></td>
 				<td>
-					<%= link_to "Update", user_list_item_path(@user.id, @list.id, itm.id), method: :put %>
+					<%= link_to "Check", user_list_item_path(@user.id, @list.id, itm.id), method: :put %>
+				</td>
+				<td>
+					<%= button_to "Delete", user_list_item_path(@user.id, @list.id, itm.id), method: :delete %>
 				</td>
 			</tr>
 		<% end %>

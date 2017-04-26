@@ -14,16 +14,19 @@ class ItemsController < ApplicationController
 		fill_user_list
 		@item = @list.items.create(item_params)
 		
-		if @item.save
-			redirect_to edit_user_list_path(@user.id, @list.id)
-		else#@TODO wywalić
-			render edit_user_list_path(@user.id, @list.id)
-		end
+		redirect_to edit_user_list_path(@user.id, @list.id)
 	end
 	
 	def update
 		change_bool
 		@item.save
+		redirect_to edit_user_list_path(@user.id, @list.id)
+	end
+	
+	def destroy
+		fill_user_list
+		@item = Item.find_by_id(params[:id])
+		@item.destroy
 		redirect_to edit_user_list_path(@user.id, @list.id)
 	end
 	
