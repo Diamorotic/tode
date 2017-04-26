@@ -1,14 +1,16 @@
 <h1>Menu</h1>
 <div>
-User: <%= current_user.name %>
+User: <%= @user.name %>
 </div>
 <div>
 	<h2>Your Lists</h2>
 	<ul><!--List of ToDo lists for current user-->
-		<% current_user.lists.each do |lst| %>
-			<li><!--@TODO add user verification-->
+		<% @user.lists.each do |lst| %>
+			<li>
 				<%= lst.name %>
-				<!--@TODO Edit and Delete buttons-->
+				<%= link_to 'Show', user_list_path(@user.id, lst.id) %>
+				<!--<= link_to 'destroy', user_list_path(@user.id, lst.id), :method => :delete, data: { confirm: 'Are you sure?' } %>-->
+				<%= button_to "Delete", user_list_path(@user.id, lst.id), method: :delete %>
 			</li>
 		<% end %>
 	</ul>
