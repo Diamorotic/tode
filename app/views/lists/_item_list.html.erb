@@ -1,0 +1,29 @@
+<h3>Tasks:</h3>
+<div>
+	<table>
+		<tr>
+			<th>Done</th>
+			<th>Task</th>
+			<th colspan="2"></th>
+		</tr>
+		<% @list.items.each do |itm| %>
+			<tr>
+				<td><%= "Y" if itm.done %></td>
+				<td><%= itm.name %></td>
+			</tr>
+		<% end %>
+	</table>
+</div>
+
+<h3>Add an Item</h3>
+<div>
+	<%= form_for :item, url: user_list_items_path(@user.id, @list.id) do |itm| %>
+		<div>
+			<%= itm.label :name %><br>
+			<%= itm.text_field :name %>
+		</div>
+		<div>
+			<%= itm.submit "Add Task" %>
+		</div>
+	<% end %>
+</div>

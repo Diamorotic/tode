@@ -8,8 +8,9 @@ User: <%= @user.name %>
 		<% @user.lists.each do |lst| %>
 			<li>
 				<%= lst.name %>
-				<%= link_to 'Show', user_list_path(@user.id, lst.id) %>
+				<%= link_to "Show", user_list_path(@user.id, lst.id) %>
 				<!--<= link_to 'destroy', user_list_path(@user.id, lst.id), :method => :delete, data: { confirm: 'Are you sure?' } %>-->
+				<%= link_to "Edit", edit_user_list_path(@user.id, lst.id)%>
 				<%= button_to "Delete", user_list_path(@user.id, lst.id), method: :delete %>
 			</li>
 		<% end %>

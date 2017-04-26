@@ -13,6 +13,11 @@ class ListsController < ApplicationController
 		@list = List.new
 	end
 	
+	def edit
+		@user = User.find_by_id(current_user[:id])
+		@list = @user.lists.find_by_id(params[:id])
+	end
+	
 	def create
 		#@lists = List.all
 		#1/0
