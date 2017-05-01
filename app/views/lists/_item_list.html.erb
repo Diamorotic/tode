@@ -8,12 +8,12 @@
       <th>Delete</th>
       <th colspan="2"></th>
     </tr>
-    <% @list.items.each do |itm| %>
+    <% @items.each do |itm| %>
       <tr>
         <td><%= "Y" if itm.done %></td>
         <td><%= itm.name %></td>
         <td>
-          <%= link_to "Check", user_list_item_path(@user.id, @list.id, itm.id), method: :put %>
+          <%= button_to "Check", user_list_item_path(@user.id, @list.id, itm.id), method: :put %>
         </td>
         <td>
           <%= button_to "Delete", user_list_item_path(@user.id, @list.id, itm.id), method: :delete %>

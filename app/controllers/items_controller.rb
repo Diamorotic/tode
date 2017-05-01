@@ -1,9 +1,6 @@
 class ItemsController < ApplicationController
   
   def show
-    change_bool
-    @item.save
-    redirect_to edit_user_list_path(params[:user_id], params[:list_id])
   end
   
   def new
@@ -11,33 +8,33 @@ class ItemsController < ApplicationController
   end
   
   def create
-    fill_user_list
+    fill_vars_user_list
     @item = @list.items.create(item_params)
     
     redirect_to edit_user_list_path(@user.id, @list.id)
   end
   
   def update
-    change_bool
+    fill_vars_user_list_item
+    @item.change_bool
     @item.save
-    redirect_to edit_user_list_path(@user.id, @list.id)
+    redirect_to edit_user_list_path(params[:user_id], params[:list_id])
   end
   
   def destroy
-    fill_user_list
-    @item = Item.find_by_id(params[:id])
+    fill_vars_user_list_item
     @item.destroy
     redirect_to edit_user_list_path(@user.id, @list.id)
   end
   
-  def fill_user_list
-    @user = User.find_by_id(current_user[:id])
+  def fill_vars_user_list
+    @user = current_user
     @list = @user.lists.find_by_id(params[:list_id])
   end
   
-  def change_bool
-    @item = Item.find_by_id(params[:id])
-    @item.done = !@item.done
+  def fill_vars_user_list_item
+    fill_vars_user_list
+    @item = @list.items.find_by_id(params[:id])
   end
   
   private
