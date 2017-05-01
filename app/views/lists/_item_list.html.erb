@@ -1,24 +1,24 @@
 <h3>Tasks:</h3>
 <div>
-	<table>
-		<tr>
-			<th>Done</th>
-			<th>Task</th>
-			<th>Check / Uncheck</th>
-			<th>Delete</th>
-			<th colspan="2"></th>
-		</tr>
-		<% @list.items.each do |itm| %>
-			<tr>
-				<td><%= "Y" if itm.done %></td>
-				<td><%= itm.name %></td>
-				<td>
-					<%= link_to "Check", user_list_item_path(@user.id, @list.id, itm.id), method: :put %>
-				</td>
-				<td>
-					<%= button_to "Delete", user_list_item_path(@user.id, @list.id, itm.id), method: :delete %>
-				</td>
-			</tr>
-		<% end %>
-	</table>
+  <table>
+    <tr>
+      <th>Done</th>
+      <th>Task</th>
+      <th>Check / Uncheck</th>
+      <th>Delete</th>
+      <th colspan="2"></th>
+    </tr>
+    <% @list.items.each do |itm| %>
+      <tr>
+        <td><%= "Y" if itm.done %></td>
+        <td><%= itm.name %></td>
+        <td>
+          <%= link_to "Check", user_list_item_path(@user.id, @list.id, itm.id), method: :put %>
+        </td>
+        <td>
+          <%= button_to "Delete", user_list_item_path(@user.id, @list.id, itm.id), method: :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
 </div>
