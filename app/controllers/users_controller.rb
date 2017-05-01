@@ -16,7 +16,9 @@ class UsersController < ApplicationController
         redirect_to user_lists_path(@user.id)
       else
         logger.info "User (#{@user.name}) log in failure: wrong password"
-        flash[:error] = 'User name taken. Wrong passowrd.'
+        #flash.now[:error] = 'User name taken. Wrong passowrd.'
+        @user.errors.add(:password, :invalid)
+        render "/login/index/"
       end
     else
       @user = User.new(user_params)
@@ -27,8 +29,8 @@ class UsersController < ApplicationController
         redirect_to user_lists_path(@user.id), notice: 'User succesfully created'
       else
         logger.debug "Error while registering new user"
-        flash[:error] = 'An error occured'
-        render '/login/index'
+        #flash.now[:error] = 'An error occured'
+        render "/login/index/"
       end
     end
   end
