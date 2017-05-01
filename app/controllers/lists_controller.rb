@@ -1,5 +1,7 @@
 class ListsController < ApplicationController
 
+  before_filter :authorize
+
   def index
     @user = current_user
     @lists = @user.lists

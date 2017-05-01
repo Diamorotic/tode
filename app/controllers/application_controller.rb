@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def authorize
-    redirect_to '/login/index' unless @current_user
+    redirect_to root_path unless current_user && @current_user[:id].to_s == params[:user_id]
   end
 
 end
