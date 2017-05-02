@@ -1,0 +1,22 @@
+<h1>Show Your List</h1>
+<h2><%= @list.name %></h2>
+
+<h3>Tasks:</h3>
+<div>
+  <table>
+    <tr>
+      <th>Done</th>
+      <th>Task</th>
+      <th colspan="2"></th>
+    </tr>
+    <% @items.each do |itm| %>
+      <tr>
+        <td><%= "Y" if itm.done %></td>
+        <td><%= itm.name %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+<div>
+  <%= link_to "Back To Lists", user_lists_path(@user.id)%>
+</div>
