@@ -1,13 +1,7 @@
 App.items = App.cable.subscriptions.create('ItemsChannel', {  
   received: function(data) {
-    $("#items").removeClass('hidden')
-    debugger;
-    return $('#items').append(this.renderItem(data));
-  },
-
-  renderItem: function(data) {
-    //return "<p> <b>" + data.done + ": </b>" + data.item + "</p>";
-    window.location.reload();
+    // Forces listening page to refresh after receiving data
+    window.location.reload()
   }
 });
 
