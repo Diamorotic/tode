@@ -21,12 +21,11 @@ class ItemsController < ApplicationController
 #=begin
     if @item.save
       ActionCable.server.broadcast 'items',
-        done: "",
         item: @item.name
-      head :ok
+      #head :ok
     end
 #=end
-#    redirect_to edit_user_list_path(@user.id, @list.id)
+    redirect_to edit_user_list_path(@user.id, @list.id)
 =begin
   respond_to do |format|
       if @item.save
@@ -44,22 +43,23 @@ class ItemsController < ApplicationController
     fill_vars_user_list_item
     @item.change_bool
     if @item.save
-      if @item.done
-        tick = "Y"
-      else
-        tick = ""
-      end
       ActionCable.server.broadcast 'items',
-        done: tick,
         item: @item.name
-      head :ok
+      #head :ok
+#      respond_to do |format|
+#        format.html { redirect_to edit_user_list_path(@user.id, @list.id), notice: 'Task was successfully created.' }
+#        format.json { render :show, status: :created, location: @list }
+#      end
     end
-#    redirect_to edit_user_list_path(params[:user_id], params[:list_id])
+    redirect_to edit_user_list_path(params[:user_id], params[:list_id])
   end
   
   def destroy
     fill_vars_user_list_item
-    @item.destroy
+    if @item.destroy
+      ActionCable.server.broadcast 'items',
+        item: @item.name
+    end
     redirect_to edit_user_list_path(@user.id, @list.id)
   end
   

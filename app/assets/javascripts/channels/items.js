@@ -6,7 +6,8 @@ App.items = App.cable.subscriptions.create('ItemsChannel', {
   },
 
   renderItem: function(data) {
-    return "<p> <b>" + data.done + ": </b>" + data.item + "</p>";
+    //return "<p> <b>" + data.done + ": </b>" + data.item + "</p>";
+    window.location.reload();
   }
 });
 
