@@ -1,6 +1,6 @@
 class ListsController < ApplicationController
 
-  before_filter :authorize
+  before_filter :authorize, :except => :show
 
   def index
     @user = current_user
@@ -8,7 +8,9 @@ class ListsController < ApplicationController
   end
 
   def show
-    fill_vars_user_lists_list_items
+    @user = User.find_by_id(params[:user_id])
+    @list = List.find_by_id(params[:id])
+    @items = @list.items
   end
   
   def new
