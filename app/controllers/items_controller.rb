@@ -18,15 +18,16 @@ class ItemsController < ApplicationController
   def create
     fill_vars_user_list
     @item = @list.items.create(item_params)
-=begin
+#=begin
     if @item.save
       ActionCable.server.broadcast 'items',
         done: "",
         item: @item.name
       head :ok
     end
-=end
+#=end
 #    redirect_to edit_user_list_path(@user.id, @list.id)
+=begin
   respond_to do |format|
       if @item.save
         format.html { redirect_to edit_user_list_path(@user.id, @list.id), notice: 'Task was successfully created.' }
@@ -36,6 +37,7 @@ class ItemsController < ApplicationController
         format.json { render json: @house.errors, status: :unprocessable_entity }
       end
     end
+=end
   end
   
   def update

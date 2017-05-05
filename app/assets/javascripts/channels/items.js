@@ -1,6 +1,7 @@
 App.items = App.cable.subscriptions.create('ItemsChannel', {  
   received: function(data) {
     $("#items").removeClass('hidden')
+    debugger;
     return $('#items').append(this.renderItem(data));
   },
 
