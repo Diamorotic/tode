@@ -10,14 +10,16 @@
     </tr>
     <% @items.each do |itm| %>
       <tr>
-        <td><%= "Y" if itm.done %></td>
-        <td><%= itm.name %></td>
-        <td>
-          <%= button_to "Check", user_list_item_path(@user.id, @list.id, itm.id), method: :put %>
-        </td>
-        <td>
-          <%= button_to "Delete", user_list_item_path(@user.id, @list.id, itm.id), method: :delete %>
-        </td>
+        <div class="panel-body" id="items" data-list=<%= @list.id %>>
+          <td><%= "Y" if itm.done %></td>
+          <td><%= itm.name %></td>
+          <td>
+            <%= button_to "Check", user_list_item_path(@user.id, @list.id, itm.id), method: :put %>
+          </td>
+          <td>
+            <%= button_to "Delete", user_list_item_path(@user.id, @list.id, itm.id), method: :delete %>
+          </td>
+        </div>
       </tr>
     <% end %>
   </table>

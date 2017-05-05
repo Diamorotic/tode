@@ -2,6 +2,11 @@ class ItemsController < ApplicationController
   
   before_filter :authorize
   
+  def index
+    fill_vars_user_list_item
+    @items = @list.items
+  end
+  
   def show
   end
   
@@ -12,20 +17,29 @@ class ItemsController < ApplicationController
   def create
     fill_vars_user_list
     @item = @list.items.create(item_params)
-    
+    if @item.save
+      ActionCable.server.broadcast 'items',
+        item: @item.name
+    end
     redirect_to edit_user_list_path(@user.id, @list.id)
   end
   
   def update
     fill_vars_user_list_item
     @item.change_bool
-    @item.save
+    if @item.save
+      ActionCable.server.broadcast 'items',
+        item: @item.name
+    end
     redirect_to edit_user_list_path(params[:user_id], params[:list_id])
   end
   
   def destroy
     fill_vars_user_list_item
-    @item.destroy
+    if @item.destroy
+      ActionCable.server.broadcast 'items',
+        item: @item.name
+    end
     redirect_to edit_user_list_path(@user.id, @list.id)
   end
   
